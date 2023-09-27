@@ -15,6 +15,7 @@ const loginUser = async () => {
         });
 
         const data = await response.json();
+        console.log("data ====> ", data);
 
         if (response.ok) {
             console.log('Login successful!');
@@ -30,7 +31,8 @@ const loginUser = async () => {
             alert('Login successful! You will be now redirected to Profile page');
             window.location.href = "http://localhost:5000/profile/";
         } else {
-            console.error('Login failed: ', data.message);
+            alert("Login failed! You entered Invalid Credentials");
+            console.error('Login failed: ', data.msg);
         }
     } catch (error) {
         console.error('An error occurred during login: ', error);
