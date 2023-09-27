@@ -10,7 +10,6 @@ const seeAllSdays = async (req, res) => {
     console.log(sDays);
     // Extract 'occasion_date' from each document and create an array of dates
     const occasionDates = sDays.map(day => day.occasion_date);
-    res.status(StatusCodes.OK).json({ occasionDates, count: occasionDates.length });
 
     ///////////////////////////////////////////EXTRA TASKS
 
@@ -34,25 +33,43 @@ const seeAllSdays = async (req, res) => {
         const todayMonth = today.getMonth();
 
         const eventDetails = {
+            id: sDays[index]._id,
             date,
             firstName: sDays[index].firstName,
             lastName: sDays[index].lastName,
             occasion: sDays[index].occasion,
         };
 
-        if (dayMonth < todayMonth || (dayMonth === todayMonth && dayDate < todayDate)) {
+        // if (dayMonth < todayMonth || (dayMonth === todayMonth && dayDate < todayDate)) {
+        //     pastEvents.push(eventDetails);
+        // } else {
+        //     if (dayMonth >= todayMonth && dayDate > todayDate) {
+        //         upcomingEvents.push(eventDetails);
+        //     }
+        //     if (dayMonth === todayMonth && dayDate === todayDate) {
+        //         eventsToday.push(eventDetails);
+        //     }
+        // }
+
+        if (dayMonth === todayMonth && dayDate === todayDate) {
+            eventsToday.push(eventDetails);
+        } else if (dayMonth < todayMonth || (dayMonth === todayMonth && dayDate < todayDate)) {
             pastEvents.push(eventDetails);
         } else {
             upcomingEvents.push(eventDetails);
-            if (dayMonth === todayMonth && dayDate === todayDate) {
-                eventsToday.push(eventDetails);
-            }
         }
     });
     console.log('Your Special Day Reminder List:');
     console.log('Past events:', pastEvents);
     console.log('Upcoming events:', upcomingEvents);
     console.log('Events for today:', eventsToday);
+    const events = {
+        "pastEvents": pastEvents,
+        "upcomingEvents": upcomingEvents,
+        "eventsToday": eventsToday,
+    }
+    // res.status(StatusCodes.OK).json({ sDays, count: sDays.length });
+    res.status(StatusCodes.OK).json({ events, count: sDays.length });
 
     // Send reminder for events today
     if (eventsToday.length > 0) {
@@ -62,26 +79,8 @@ const seeAllSdays = async (req, res) => {
         });
     };
 
-    ////////////////// SENDING REMINDER EMAIL
-    const schedule = require('node-schedule');
+    //SENDING REMINDER EMAIL
     const nodemailer = require('nodemailer');
-
-    const User = require('../models/User');
-
-    // const getUserEmailById = async (userId) => {
-    //     try {
-    //         const user = await User.findById(userId);
-    //         if (!user) {
-    //             throw new Error('User not found');
-    //         }
-
-    //         return user.email;
-    //     } catch (error) {
-    //         throw new Error('Error fetching user email: ' + error.message);
-    //     }
-    // };
-
-    // module.exports = { getUserEmailById };
 
     // Function to send email for a specific event
     const sendReminderEmail = async (event) => {
@@ -121,26 +120,8 @@ const seeAllSdays = async (req, res) => {
     };
 
     module.exports = sendReminderEmail;
+
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // SEE specific Special Day Reminder input
 const seeSday = async (req, res) => {
@@ -161,9 +142,20 @@ const seeSday = async (req, res) => {
 
 // ADD new Special Day reminder input
 const createSday = async (req, res) => {
+    console.log("req.body ===> ", req.body);
     req.body.createdBy = req.user.userId;
     const sDay = await SpecialDay.create(req.body);
-    schedule.scheduleJob(req.body.occasion_date, () => {
+
+    const currentDate = new Date();
+    let existingDate = new Date(req.body.occasion_date);
+
+    // This code is only needed to force email being sent 5 seconds after application start
+    existingDate.setHours(currentDate.getHours());
+    existingDate.setMinutes(currentDate.getMinutes());
+    existingDate.setSeconds(currentDate.getSeconds() + 5);
+    existingDate.setFullYear(currentDate.getFullYear());
+
+    schedule.scheduleJob(existingDate, () => {
         console.log(`Scheduled job triggered for event: ${req.body.occasion}`);
         sendReminderEmail(req.body);
     });

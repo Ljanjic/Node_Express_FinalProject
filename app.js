@@ -38,7 +38,7 @@ app.use(xss());
 // ROUTES
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/sDays', authenticateUser, sDaysRouter);
-
+app.use(express.static('public'));
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
@@ -52,7 +52,7 @@ const start = async () => {
     await connectDB(process.env.MONGO_URI);
 
     // Start Scheduler
-    console.log("starting scheduler");
+    console.log("Starting Reminder app scheduler");
     const schedule = await startScheduler();
 
     app.listen(port, console.log(`Server is listening on port ${port}...`));
