@@ -28,13 +28,10 @@ logOut.addEventListener('click', async () => {
 
 let sDays = [];
 const getEvents = async () => {
-    // const myHeaders = new Headers();
-    // myHeaders.append("Authorization", `Bearer ${window.localStorage.getItem("token")}`);
-    // console.log(" window.localStorage.getItem('token') ===> ", window.localStorage.getItem("token"));
     var myHeaders = new Headers();
     const test = `Bearer ${window.localStorage.getItem("token")}`
     console.log("test ==> ", test);
-    // const authToken = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCsdI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwYmEwYjE2YjY2ZjZmNTJlMWZkNDEiLCJuYW1lIjoiTGppbGphbmEiLCJpYXQiOjE2OTU3NTY1MjMsImV4cCI6MTY5ODM0ODUyM30.dExW-EWG_ZqzWqQ4wp6xaCq2IlvE7VPLM7bfqHbVK40`;
+
     const authToken = `Bearer ${window.localStorage.getItem("token")}`;
     myHeaders.append("Authorization", authToken);
 
@@ -107,22 +104,12 @@ function addElement(element, elementParentId) {
     deleteEventButton.textContent = "Delete event";
     deleteEventButton.addEventListener('click', async (event) => {
         deleteEvent(element.id)
-    })
-
-    // const updateEventLink = document.createElement("a");
-    // updateEventLink.textContent = "Update event";
-    // updateEventLink.href = `http://localhost:5000/day/${element.id}`;
-
-    // const updateEventButton = document.createElement("button");
-    // updateEventButton.textContent = "Update event";
-    // updateEventButton.addEventListener('click', async (event) => {
-    //     openUpdateEventForm(element.id)
-    // })
+    });
 
     const updateEventButton = document.createElement("button");
     updateEventButton.textContent = "Update event";
     updateEventButton.addEventListener('click', async (event) => {
-        updateEventRedirect(element.id)
+        updateEventRedirect(element.id);
     })
 
     // add the text node to the newly created div
@@ -132,14 +119,14 @@ function addElement(element, elementParentId) {
     newDayElement.appendChild(date);
     newDayElement.appendChild(deleteEventButton);
     newDayElement.appendChild(updateEventButton);
-    // newDayElement.appendChild(updateEventLink);
+
     newDayElement.style.border = "1px solid black";
     newDayElement.style.borderRadius = "6px";
     newDayElement.style.width = "fit-content";
     newDayElement.style.padding = "3px";
     // add the newly created element and its content into the DOM
     const currentDiv = document.getElementById(elementParentId);
-    // document.body.insertBefore(newDayElement, currentDiv);
+
     currentDiv.appendChild(newDayElement);
 }
 
@@ -148,7 +135,7 @@ const deleteEvent = async (eventId) => {
     var myHeaders = new Headers();
     const test = `Bearer ${window.localStorage.getItem("token")}`
     console.log("test ==> ", test);
-    // const authToken = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCsdI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwYmEwYjE2YjY2ZjZmNTJlMWZkNDEiLCJuYW1lIjoiTGppbGphbmEiLCJpYXQiOjE2OTU3NTY1MjMsImV4cCI6MTY5ODM0ODUyM30.dExW-EWG_ZqzWqQ4wp6xaCq2IlvE7VPLM7bfqHbVK40`;
+
     const authToken = `Bearer ${window.localStorage.getItem("token")}`;
     myHeaders.append("Authorization", authToken);
 
@@ -179,78 +166,7 @@ const deleteEvent = async (eventId) => {
 const updateEventRedirect = async (eventId) => {
     window.localStorage.setItem("eventId", eventId);
     window.location.href = "http://localhost:5000/update-event/";
-}
-
-// const openUpdateEventForm = async (eventId) => {
-//     const updateEventFormOuter = document.createElement("div");
-//     updateEventFormOuter.style.position = "absolute";
-//     updateEventFormOuter.style.width = "100vw";
-//     updateEventFormOuter.style.height = "100vh";
-//     updateEventFormOuter.style.display = "flex";
-//     updateEventFormOuter.style.justifyContent = "center";
-//     updateEventFormOuter.style.alignItems = "center";
-
-//     const updateEventForm = document.createElement("form");
-//     updateEventFormOuter.appendChild(updateEventForm);
-
-//     const firstNameLabel = document.createElement("label");
-//     firstNameLabel.textContent = "First Name:";
-
-//     const firstNameInput = document.createElement("input");
-
-//     // const firstName = document.getElementById('firstName').value;
-//     // const lastName = document.getElementById('lastName').value;
-//     // const occasion = document.getElementById('occasion').value;
-//     // const occasion_date = document.getElementById('occasion_date').value;
-//     // const age = document.getElementById('age').value;
-//     // const createdBy = document.getElementById('createdBy').value;
-
-//     updateEventForm.appendChild(firstNameLabel);
-//     updateEventForm.appendChild(firstNameInput);
-//     const currentDiv = document.getElementById('days');
-//     currentDiv.appendChild(updateEventForm);
-
-//     console.log("inside updateEvent()");
-//     var myHeaders = new Headers();
-//     const test = `Bearer ${window.localStorage.getItem("token")}`
-//     console.log("test ==> ", test);
-//     // const authToken = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCsdI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwYmEwYjE2YjY2ZjZmNTJlMWZkNDEiLCJuYW1lIjoiTGppbGphbmEiLCJpYXQiOjE2OTU3NTY1MjMsImV4cCI6MTY5ODM0ODUyM30.dExW-EWG_ZqzWqQ4wp6xaCq2IlvE7VPLM7bfqHbVK40`;
-//     const authToken = `Bearer ${window.localStorage.getItem("token")}`;
-//     myHeaders.append("Authorization", authToken);
-
-//     var raw = JSON.stringify({
-//         "firstName": firstName,
-//         "lastName": lastName,
-//         "occasion": occasion,
-//         "occasion_date": occasion_date,
-//         "age": age,
-//         "createdBy": createdBy
-//     });
-
-//     var requestOptions = {
-//         method: 'PUT',
-//         headers: myHeaders,
-//         body: raw,
-//         redirect: 'follow'
-//     };
-
-//     try {
-//         const response = await fetch(`/api/v1/sDays/${eventId}`, requestOptions);
-
-//         const data = await response.json();
-//         console.log("data here ===> ", data);
-
-//         if (response.ok) {
-//             alert('Event was successfully updated!');
-//             window.location.reload();
-//             return { "updatedEventId": eventId };
-//         } else {
-//             console.error('updateEvent failed: ', data.message);
-//         }
-//     } catch (error) {
-//         console.error('An error occurred during updateEvent: ', error);
-//     }
-// }
+};
 
 // Call the fetchEventsAndLog function to initiate the fetching of events
 fetchEventsAndDisplay();

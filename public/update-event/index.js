@@ -16,9 +16,7 @@ const updateEvent = async () => {
     console.log("createdBy ===> ", createdBy);
 
     var myHeaders = new Headers();
-    // const test = `Bearer ${window.localStorage.getItem("token")}`
-    // console.log("test ==> ", test);
-    // const authToken = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCsdI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwYmEwYjE2YjY2ZjZmNTJlMWZkNDEiLCJuYW1lIjoiTGppbGphbmEiLCJpYXQiOjE2OTU3NTY1MjMsImV4cCI6MTY5ODM0ODUyM30.dExW-EWG_ZqzWqQ4wp6xaCq2IlvE7VPLM7bfqHbVK40`;
+
     const authToken = `Bearer ${window.localStorage.getItem("token")}`;
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", authToken);
@@ -61,11 +59,6 @@ const updateEvent = async () => {
 updateEventForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    // document.getElementById('logoutButton').addEventListener('click', logoutUser);
-
     updateEvent();
 
-    // Set up event listener for the Login button
-    // const loginButton = document.getElementById('loginButton');
-    // loginButton.addEventListener('click', loginUser);
 });

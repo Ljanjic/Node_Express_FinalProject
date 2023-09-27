@@ -40,7 +40,7 @@ const logout = async (req, res) => {
   try {
     // Perform logout actions here (e.g., invalidate token, clear session)
 
-    // For simplicity, let's assume you clear the session
+
     req.session.destroy((err) => {
       if (err) {
         console.error('Error destroying session:', err);

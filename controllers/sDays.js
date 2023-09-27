@@ -11,7 +11,7 @@ const seeAllSdays = async (req, res) => {
     // Extract 'occasion_date' from each document and create an array of dates
     const occasionDates = sDays.map(day => day.occasion_date);
 
-    ///////////////////////////////////////////EXTRA TASKS
+    //EXTRA TASKS
 
     // Filter SpecialDays and Sort:
     const today = new Date();
@@ -40,17 +40,6 @@ const seeAllSdays = async (req, res) => {
             occasion: sDays[index].occasion,
         };
 
-        // if (dayMonth < todayMonth || (dayMonth === todayMonth && dayDate < todayDate)) {
-        //     pastEvents.push(eventDetails);
-        // } else {
-        //     if (dayMonth >= todayMonth && dayDate > todayDate) {
-        //         upcomingEvents.push(eventDetails);
-        //     }
-        //     if (dayMonth === todayMonth && dayDate === todayDate) {
-        //         eventsToday.push(eventDetails);
-        //     }
-        // }
-
         if (dayMonth === todayMonth && dayDate === todayDate) {
             eventsToday.push(eventDetails);
         } else if (dayMonth < todayMonth || (dayMonth === todayMonth && dayDate < todayDate)) {
@@ -68,7 +57,6 @@ const seeAllSdays = async (req, res) => {
         "upcomingEvents": upcomingEvents,
         "eventsToday": eventsToday,
     }
-    // res.status(StatusCodes.OK).json({ sDays, count: sDays.length });
     res.status(StatusCodes.OK).json({ events, count: sDays.length });
 
     // Send reminder for events today
@@ -94,8 +82,8 @@ const seeAllSdays = async (req, res) => {
                 secure: false, // Use secure connection (TLS)
                 service: 'gmail',
                 auth: {
-                    user: process.env.EMAIL_USER, // Replace with your email address
-                    pass: process.env.EMAIL_PASSWORD // Replace with your email password or app password
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASSWORD
                 }
             });
 

@@ -22,10 +22,8 @@ const loginUser = async () => {
             console.log('User: ', data.user);
             console.log('Token: ', data.token);
             const token = data.token;
-            // const token = data.token.slice(1, -1);
             console.log("token ==> ", token);
-            // Store the token in localStorage or a cookie for future authenticated requests
-            // window.localStorage.setItem("token", JSON.stringify(data.token)); // this is wrong
+            // Storing the token in localStorage or a cookie for future authenticated requests
             window.localStorage.setItem("token", data.token);
             console.log(" window.localStorage.getItem('token') ===> ", window.localStorage.getItem("token"));
             alert('Login successful! You will be now redirected to Profile page');
@@ -43,11 +41,5 @@ const loginUser = async () => {
 loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    // document.getElementById('logoutButton').addEventListener('click', logoutUser);
-
     loginUser();
-
-    // Set up event listener for the Login button
-    // const loginButton = document.getElementById('loginButton');
-    // loginButton.addEventListener('click', loginUser);
 });

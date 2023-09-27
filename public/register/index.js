@@ -19,7 +19,7 @@ const registerUser = async () => {
 
         if (response.ok) {
             console.log('Registration successful!');
-            // Store the token in localStorage or a cookie for future authenticated requests
+            // Storing the token in localStorage or a cookie for future authenticated requests
             alert('Registration successful!');
             window.location.href = "http://localhost:5000/login/";
         } else {
