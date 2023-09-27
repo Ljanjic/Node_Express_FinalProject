@@ -3,6 +3,7 @@ const loginForm = document.getElementById("loginForm");
 const loginUser = async () => {
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
+    console.log("here");
 
     try {
         const response = await fetch('/api/v1/auth/login', {
