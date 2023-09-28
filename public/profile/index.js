@@ -21,7 +21,7 @@ const logoutUser = async () => {
 const logOut = document.getElementById("logOut");
 logOut.addEventListener('click', async () => {
     logoutUser();
-    alert("user was logged out");
+    alert("You are succesfully logged out!");
     window.localStorage.removeItem("token");
     window.location.href = "http://localhost:5000/login/";
 })
@@ -149,10 +149,9 @@ const deleteEvent = async (eventId) => {
         const response = await fetch(`/api/v1/sDays/${eventId}`, requestOptions);
 
         const data = await response.json();
-        console.log("data here ===> ", data);
 
         if (response.ok) {
-            alert('Event was successfully deleted!');
+            alert('Reminder is successfully deleted!');
             window.location.reload();
             return { "deletedEventId": eventId };
         } else {

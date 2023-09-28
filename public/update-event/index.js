@@ -37,7 +37,6 @@ const updateEvent = async () => {
     };
 
     try {
-        console.log("here");
         const response = await fetch(`/api/v1/sDays/${eventId}`, requestOptions);
 
         const data = await response.json();

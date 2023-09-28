@@ -2,13 +2,17 @@
 
 Developing Your Own Express Application
 
+## Project link
+https://link.com
+
+## Header
 For the final project, you will each design and develop your own Express application. You will have two weeks to complete the project. As that is a short time for a fully functional application, the applications will have to be relatively simple, with only a few features implemented.
 
-Goal of the Application
+## Goal of the Application
 
 The goal of the project is to showcase what you have learned during class. You will have the opportunity to demonstrate your knowledge and creativity. You are required to create an Express application from scratch. A proposal for what your application will do is required to be submitted before you start working on the project.
 
-Requirements for the Project (Rubric)
+## Requirements for the Project (Rubric)
 
 Create a full Node/Express application from scratch using the MongoDB database. It must contain the following elements:
 Models & Controllers
@@ -25,7 +29,7 @@ Test registration, authentication, and all CRUD operations using Postman.
 
 Bonus: implement some automated tests using Chai.
 
-Front End
+## Front End
 Implement a front end for your application using HTML, JavaScript, and CSS. The front end should be served up from the public directory of the same Express instance that hosts the back end.
 In the front end, implement support for registration, logon, and logoff operations.
 Implement views for the CRUD operations for each model:

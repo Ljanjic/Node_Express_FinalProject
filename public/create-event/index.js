@@ -38,19 +38,20 @@ const createEvent = async () => {
     };
 
     try {
-        console.log("here");
         const response = await fetch('/api/v1/sDays', requestOptions);
 
         const data = await response.json();
         console.log("data ===> ", data);
 
         if (response.ok) {
-            alert("event was created")
+            alert("Reminder succesfully created!")
             window.location.href = "http://localhost:5000/profile/";
         } else {
+            alert('Create event failed: ', data.message)
             console.error('Create event failed: ', data.message);
         }
     } catch (error) {
+        alert('An error occurred during create event: ', error)
         console.error('An error occurred during create event: ', error);
     }
 }

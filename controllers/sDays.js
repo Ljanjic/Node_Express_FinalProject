@@ -5,6 +5,7 @@ const schedule = require('node-schedule');
 
 // SEE ALL Special day reminders
 const seeAllSdays = async (req, res) => {
+    console.log("req.user.email ===> ", req.user.email);
     const sDays = await SpecialDay.find({ createdBy: req.user.userId })
         .sort('createdAt');
     console.log(sDays);
@@ -90,6 +91,7 @@ const seeAllSdays = async (req, res) => {
             const mailOptions = {
                 from: process.env.EMAIL_USER,
                 to: process.env.EMAIL_USER,
+                // to: req.user.email,
                 subject: 'SPECIAL DAY REMINDER: THERE IS SOME SPECIAL EVENT TODAY!',
                 text: `REMINDER: TODAY IS THE SPECIAL DAY FOR ${event.firstName} ${event.lastName}. OCCASION: ${event.occasion}! SEND YOUR WISHES!`
             };

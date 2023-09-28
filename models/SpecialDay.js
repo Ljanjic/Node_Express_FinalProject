@@ -17,10 +17,8 @@ const sDaySchema = new mongoose.Schema({
   },
   occasion: {
     type: String,
-    enum: ['birthday', 'anniversary'],
-    default: 'birthday',
-    unique: true,
-    required: [true, 'Add new Special Day reminder event']
+    required: [true, 'Add new Special Day reminder event'],
+    unique: false,
   },
   occasion_date: {
     type: Date,
