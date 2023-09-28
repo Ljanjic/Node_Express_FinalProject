@@ -2,6 +2,47 @@ const { StatusCodes } = require('http-status-codes');
 const SpecialDay = require('../models/SpecialDay');
 const { BadRequestError, NotFoundError } = require('../errors');
 const schedule = require('node-schedule');
+const nodemailer = require('nodemailer');
+
+// SENDING REMINDER EMAIL
+// Function to send email for a specific event
+const sendReminderEmail = async (event) => {
+    try {
+        console.log('Attempting to send reminder email...');
+        // Fetch the user's email based on their ID
+
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com', // This is the SMTP server for Gmail
+            port: 587, // This is the port for Gmail's SMTP server (secure TLS)
+            secure: false, // Use secure connection (TLS)
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASSWORD
+            }
+        });
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: process.env.EMAIL_USER,
+            // to: req.user.email,
+            subject: 'SPECIAL DAY REMINDER: THERE IS SOME SPECIAL EVENT TODAY!',
+            text: `REMINDER: TODAY IS THE SPECIAL DAY FOR ${event.firstName} ${event.lastName}. OCCASION: ${event.occasion}! SEND YOUR WISHES!`
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+            } else {
+                console.log('Email sent:', info.response);
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching user email:', error);
+    }
+    console.log(`Sending email reminder for event: ${event.occasion}`);
+};
+
 
 // SEE ALL Special day reminders
 const seeAllSdays = async (req, res) => {
@@ -67,50 +108,6 @@ const seeAllSdays = async (req, res) => {
 
         });
     };
-
-    //SENDING REMINDER EMAIL
-    const nodemailer = require('nodemailer');
-
-    // Function to send email for a specific event
-    const sendReminderEmail = async (event) => {
-        try {
-            console.log('Attempting to send reminder email...');
-            // Fetch the user's email based on their ID
-
-            const transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com', // This is the SMTP server for Gmail
-                port: 587, // This is the port for Gmail's SMTP server (secure TLS)
-                secure: false, // Use secure connection (TLS)
-                service: 'gmail',
-                auth: {
-                    user: process.env.EMAIL_USER,
-                    pass: process.env.EMAIL_PASSWORD
-                }
-            });
-
-            const mailOptions = {
-                from: process.env.EMAIL_USER,
-                to: process.env.EMAIL_USER,
-                // to: req.user.email,
-                subject: 'SPECIAL DAY REMINDER: THERE IS SOME SPECIAL EVENT TODAY!',
-                text: `REMINDER: TODAY IS THE SPECIAL DAY FOR ${event.firstName} ${event.lastName}. OCCASION: ${event.occasion}! SEND YOUR WISHES!`
-            };
-
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    console.error('Error sending email:', error);
-                } else {
-                    console.log('Email sent:', info.response);
-                }
-            });
-        } catch (error) {
-            console.error('Error fetching user email:', error);
-        }
-        console.log(`Sending email reminder for event: ${event.occasion}`);
-    };
-
-    module.exports = sendReminderEmail;
-
 };
 
 // SEE specific Special Day Reminder input
@@ -203,6 +200,7 @@ const deleteSday = async (req, res) => {
 };
 
 module.exports = {
+    sendReminderEmail,
     seeAllSdays,
     seeSday,
     createSday,
