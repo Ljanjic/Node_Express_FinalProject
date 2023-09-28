@@ -1,8 +1,8 @@
+const schedule = require('node-schedule');
+const nodemailer = require('nodemailer');
 const { StatusCodes } = require('http-status-codes');
 const SpecialDay = require('../models/SpecialDay');
 const { BadRequestError, NotFoundError } = require('../errors');
-const schedule = require('node-schedule');
-const nodemailer = require('nodemailer');
 
 // SENDING REMINDER EMAIL
 // Function to send email for a specific event
@@ -11,7 +11,7 @@ const sendReminderEmail = async (event) => {
         console.log('Attempting to send reminder email...');
         // Fetch the user's email based on their ID
 
-        const transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport({/*  */
             host: 'smtp.gmail.com', // This is the SMTP server for Gmail
             port: 587, // This is the port for Gmail's SMTP server (secure TLS)
             secure: false, // Use secure connection (TLS)
