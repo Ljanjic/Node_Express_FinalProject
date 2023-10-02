@@ -45,7 +45,7 @@ const updateEvent = async () => {
         if (response.ok) {
             alert("event was updated");
             window.localStorage.removeItem("eventId");
-            window.location.href = "http://localhost:5000/profile/";
+            window.location.href = `${process.env.BASE_URL}/profile/`;
         } else {
             console.error('Update event failed: ', data.message);
         }

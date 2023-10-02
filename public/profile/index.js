@@ -164,7 +164,7 @@ const deleteEvent = async (eventId) => {
 
 const updateEventRedirect = async (eventId) => {
     window.localStorage.setItem("eventId", eventId);
-    window.location.href = "http://localhost:5000/update-event/";
+    window.location.href = `${process.env.BASE_URL}/update-event/`;;
 };
 
 // Call the fetchEventsAndLog function to initiate the fetching of events
