@@ -26,7 +26,7 @@ const loginUser = async () => {
             window.localStorage.setItem("token", data.token);
             console.log(" window.localStorage.getItem('token') ===> ", window.localStorage.getItem("token"));
             alert('Login successful! You will be now redirected to Profile page');
-            window.location.href = `${process.env.BASE_URL}/profile/`;;
+            window.location.href = `${process.env.BASE_URL}/profile`;
         } else {
             alert("Login failed! You entered Invalid Credentials");
             console.error('Login failed: ', data.msg);

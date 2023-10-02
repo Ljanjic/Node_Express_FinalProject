@@ -45,7 +45,7 @@ const createEvent = async () => {
 
         if (response.ok) {
             alert("Reminder succesfully created!")
-            window.location.href = `${process.env.BASE_URL}/profile/`;;
+            window.location.href = `${process.env.BASE_URL}/profile`;
         } else {
             alert('Create event failed: ', data.message)
             console.error('Create event failed: ', data.message);
