@@ -1,8 +1,8 @@
-# Node/Express Final Project: Full Stack
+# Node/Express Final Project: Server Side Rendered
 
 ### Deployment
 
-This project is deployed on [Render](https://node-express-reminder-app.onrender.com)
+This project is deployed on [Render](https://node-express-special-day-reminder-app-mm8q.onrender.com/register/)
 
 ## Header
 For the final project, you will each design and develop your own Express application. You will have two weeks to complete the project. As that is a short time for a fully functional application, the applications will have to be relatively simple, with only a few features implemented.
