@@ -21,7 +21,7 @@ const registerUser = async () => {
             console.log('Registration successful!');
             // Storing the token in localStorage or a cookie for future authenticated requests
             alert('Registration successful!');
-            window.location.href = `${process.env.BASE_URL}/login`;
+            window.location.href = "https://node-express-special-day-reminder-app-mm8q.onrender.com/login";
         } else {
             console.error('Registration failed:', data.message);
         }

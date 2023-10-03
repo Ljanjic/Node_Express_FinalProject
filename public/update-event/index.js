@@ -45,7 +45,7 @@ const updateEvent = async () => {
         if (response.ok) {
             alert("event was updated");
             window.localStorage.removeItem("eventId");
-            window.location.href = `${process.env.BASE_URL}/profile`;
+            window.location.href = "https://node-express-special-day-reminder-app-mm8q.onrender.com/profile";
         } else {
             console.error('Update event failed: ', data.message);
         }

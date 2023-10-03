@@ -1,6 +1,6 @@
 const createEventButton = document.getElementById("createEventButton");
 createEventButton.addEventListener('click', async () => {
-    window.location.href = `${process.env.BASE_URL}/create-event`;
+    window.location.href = "https://node-express-special-day-reminder-app-mm8q.onrender.com/create-event";
 
     const logoutUser = async () => {
         const response = await fetch('/api/v1/logout', {
@@ -22,7 +22,7 @@ createEventButton.addEventListener('click', async () => {
         logoutUser();
         alert("You are succesfully logged out!");
         window.localStorage.removeItem("token");
-        window.location.href = `${process.env.BASE_URL}/login`;
+        window.location.href = "https://node-express-special-day-reminder-app-mm8q.onrender.com/login";
     })
 
     let sDays = [];
@@ -163,7 +163,7 @@ createEventButton.addEventListener('click', async () => {
 
     const updateEventRedirect = async (eventId) => {
         window.localStorage.setItem("eventId", eventId);
-        window.location.href = `${process.env.BASE_URL}/update-event`;
+        window.location.href = "https://node-express-special-day-reminder-app-mm8q.onrender.com/update-event";
     };
 });
 // Call the fetchEventsAndLog function to initiate the fetching of events
