@@ -43,14 +43,14 @@ const updateEvent = async () => {
         console.log("data ===> ", data);
 
         if (response.ok) {
-            alert("event was updated");
+            alert("Reminder is successfully deleted!");
             window.localStorage.removeItem("eventId");
             window.location.href = "https://node-express-special-day-reminder-app-mm8q.onrender.com/profile";
         } else {
-            console.error('Update event failed: ', data.message);
+            console.error('Update event reminder failed: ', data.message);
         }
     } catch (error) {
-        console.error('An error occurred during update event: ', error);
+        console.error('An error occurred during update event reminder: ', error);
     }
 }
 

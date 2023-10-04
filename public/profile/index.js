@@ -55,7 +55,7 @@ const getEvents = async () => {
     } catch (error) {
         console.error('An error occurred during getDays: ', error);
     }
-}
+};
 
 const fetchEventsAndDisplay = async () => {
     try {
@@ -109,7 +109,7 @@ function addElement(element, elementParentId) {
     updateEventButton.textContent = "Update event";
     updateEventButton.addEventListener('click', async (event) => {
         updateEventRedirect(element.id);
-    })
+    });
 
     // add the text node to the newly created div
     newDayElement.appendChild(firstName);
@@ -159,7 +159,7 @@ const deleteEvent = async (eventId) => {
     } catch (error) {
         console.error('An error occurred during deleteEvent: ', error);
     }
-}
+};
 
 const updateEventRedirect = async (eventId) => {
     window.localStorage.setItem("eventId", eventId);

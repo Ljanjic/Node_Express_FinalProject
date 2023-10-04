@@ -47,12 +47,12 @@ const createEvent = async () => {
             alert("Reminder succesfully created!")
             window.location.href = "https://node-express-special-day-reminder-app-mm8q.onrender.com/profile";
         } else {
-            alert('Create event failed: ', data.message)
-            console.error('Create event failed: ', data.message);
+            alert('Create reminder failed: ', data.message)
+            console.error('Create reminder failed: ', data.message);
         }
     } catch (error) {
-        alert('An error occurred during create event: ', error)
-        console.error('An error occurred during create event: ', error);
+        alert('An error occurred during creating a new reminder: ', error)
+        console.error('An error occurred during create reminder: ', error);
     }
 }
 

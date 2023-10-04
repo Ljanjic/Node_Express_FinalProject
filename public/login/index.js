@@ -25,7 +25,7 @@ const loginUser = async () => {
             // Storing the token in localStorage or a cookie for future authenticated requests
             window.localStorage.setItem("token", data.token);
             console.log(" window.localStorage.getItem('token') ===> ", window.localStorage.getItem("token"));
-            alert('Login successful! You will be now redirected to Profile page');
+            alert('Login successful! You will be now redirected to Profile Home page');
             window.location.href = "https://node-express-special-day-reminder-app-mm8q.onrender.com/profile";
         } else {
             alert("Login failed! You entered Invalid Credentials");
