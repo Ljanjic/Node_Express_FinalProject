@@ -165,6 +165,7 @@ createEventButton.addEventListener('click', async () => {
         window.localStorage.setItem("eventId", eventId);
         window.location.href = "https://node-express-special-day-reminder-app-mm8q.onrender.com/update-event";
     };
+
+    // Call the fetchEventsAndLog function to initiate the fetching of events
+    fetchEventsAndDisplay();
 });
-// Call the fetchEventsAndLog function to initiate the fetching of events
-fetchEventsAndDisplay();
